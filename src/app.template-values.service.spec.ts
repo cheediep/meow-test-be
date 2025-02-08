@@ -72,4 +72,18 @@ describe("TemplateValuesService", () => {
       );
     });
   });
+
+  describe("possessiveFormat", () => {
+    it("returns the value correctly when there is only one name", () => {
+      const names = service.possessiveFormat(cats[0].name);
+      expect(names).toEqual(`${cats[0].name}'s`);
+    });
+
+    it("returns the value correctly when there are two names", () => {
+      const names = service.possessiveFormat(
+        `${cats[2].name} and ${cats[3].name}`
+      );
+      expect(names).toEqual(`${cats[2].name} and ${cats[3].name}'s`);
+    });
+  });
 });

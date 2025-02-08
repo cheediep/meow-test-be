@@ -13,4 +13,8 @@ export class TemplateValuesService {
       return `${acc}, ${name}`;
     }, "");
   }
+
+  possessiveFormat(namesSentence: string): string {
+    return `${namesSentence}'s`;
+  }
 }
