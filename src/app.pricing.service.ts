@@ -1,4 +1,5 @@
 import { Injectable } from "@nestjs/common";
+import { PouchPrice } from "../data";
 import { Cat } from "./types";
 
 @Injectable()
@@ -11,8 +12,8 @@ export class PricingService {
     return 1;
   }
 
-  getPriceByPouchSize(pouchSize: string): number {
-    return 1;
+  getPriceByPouchSize(pouchSize: keyof typeof PouchPrice): number {
+    return PouchPrice[pouchSize];
   }
 
   filterInactiveCats(): Cat[] {

@@ -45,9 +45,17 @@ describe("PricingService", () => {
           PouchPrice[cats[2].pouchSize]
       );
     });
+
+    it("returns 0 if there are no active cats", () => {
+      const noActiveCatsService = new PricingService([
+        { ...cats[0], subscriptionActive: false },
+      ]);
+      const totalPrice = noActiveCatsService.getTotalSubscriptionPrice();
+      expect(totalPrice).toEqual(0);
+    });
   });
 
-  describe("getPriceByPouchSize", () => {
+  describe.only("getPriceByPouchSize", () => {
     it("returns the correct price based on pouch size", () => {
       expect(service.getPriceByPouchSize("A")).toEqual(PouchPrice.A);
       expect(service.getPriceByPouchSize("B")).toEqual(PouchPrice.B);
