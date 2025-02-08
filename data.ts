@@ -1,5 +1,14 @@
 import { User } from "./src/types";
 
+export const PouchPrice = {
+  A: 55.5,
+  B: 59.5,
+  C: 62.75,
+  D: 66.0,
+  E: 69.0,
+  F: 71.25,
+};
+
 export const users: User[] = [
   {
     id: "618f4ed6-1c5b-4993-a149-f64700bf31dd",
