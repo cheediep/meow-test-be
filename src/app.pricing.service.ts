@@ -22,4 +22,8 @@ export class PricingService {
   filterInactiveCats(): Cat[] {
     return this.cats.filter((cat) => cat.subscriptionActive);
   }
+
+  hasFreeGift(): boolean {
+    return this.getTotalSubscriptionPrice() >= 120;
+  }
 }
