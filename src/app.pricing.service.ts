@@ -9,7 +9,10 @@ export class PricingService {
   }
 
   getTotalSubscriptionPrice(): number {
-    return 1;
+    return this.filterInactiveCats().reduce(
+      (acc, cat) => acc + this.getPriceByPouchSize(cat.pouchSize),
+      0
+    );
   }
 
   getPriceByPouchSize(pouchSize: keyof typeof PouchPrice): number {
@@ -17,6 +20,6 @@ export class PricingService {
   }
 
   filterInactiveCats(): Cat[] {
-    return this.cats;
+    return this.cats.filter((cat) => cat.subscriptionActive);
   }
 }

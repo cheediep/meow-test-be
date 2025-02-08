@@ -55,7 +55,7 @@ describe("PricingService", () => {
     });
   });
 
-  describe.only("getPriceByPouchSize", () => {
+  describe("getPriceByPouchSize", () => {
     it("returns the correct price based on pouch size", () => {
       expect(service.getPriceByPouchSize("A")).toEqual(PouchPrice.A);
       expect(service.getPriceByPouchSize("B")).toEqual(PouchPrice.B);
