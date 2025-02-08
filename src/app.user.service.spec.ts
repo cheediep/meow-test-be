@@ -1,6 +1,6 @@
 import { faker } from "@faker-js/faker";
 import { UserService } from "./app.user.service";
-import { CatPouchSize, User } from "./types";
+import { CatPouchSize } from "./types";
 
 describe("UserService", () => {
   let service: UserService;
@@ -47,8 +47,8 @@ describe("UserService", () => {
 
   describe("findOne", () => {
     it("return a user based on id", () => {
-      const user: User = service.findOne(users[0].id);
-      expect(user.id).toEqual(users[0].id);
+      const user = service.findOne(users[0].id);
+      expect(user?.id).toEqual(users[0].id);
     });
 
     it("returns null if user not found", () => {
