@@ -1,7 +1,7 @@
 import { faker } from "@faker-js/faker";
 import { PouchPrice } from "../data";
 import { PricingService } from "./app.pricing.service";
-import { Cat, CatPouchSize } from "./types";
+import { Cat } from "./types";
 
 describe("PricingService", () => {
   let service: PricingService;
@@ -33,12 +33,12 @@ describe("PricingService", () => {
   ];
 
   beforeEach(() => {
-    service = new PricingService(cats);
+    service = new PricingService();
   });
 
   describe("getTotalSubscriptionPrice", () => {
     it("returns the total subscription price, ignoring inactive cats", () => {
-      const totalPrice = service.getTotalSubscriptionPrice();
+      const totalPrice = service.getTotalSubscriptionPrice(cats);
       expect(totalPrice).toEqual(
         PouchPrice[cats[0].pouchSize] +
           PouchPrice[cats[1].pouchSize] +
@@ -47,10 +47,9 @@ describe("PricingService", () => {
     });
 
     it("returns 0 if there are no active cats", () => {
-      const noActiveCatsService = new PricingService([
+      const totalPrice = service.getTotalSubscriptionPrice([
         { ...cats[0], subscriptionActive: false },
       ]);
-      const totalPrice = noActiveCatsService.getTotalSubscriptionPrice();
       expect(totalPrice).toEqual(0);
     });
   });
@@ -68,29 +67,19 @@ describe("PricingService", () => {
 
   describe("filterInactiveCats", () => {
     it("returns only cats with an active subscription", () => {
-      const filteredCats = service.filterInactiveCats();
+      const filteredCats = service.filterInactiveCats(cats);
       expect(filteredCats).toEqual([cats[0], cats[1], cats[2]]);
     });
   });
 
   describe("hasFreeGift", () => {
-    const serviceWithFreeGift = new PricingService([
-      { ...cats[0], subscriptionActive: true, pouchSize: CatPouchSize.F },
-      { ...cats[1], subscriptionActive: true, pouchSize: CatPouchSize.F },
-    ]);
-
-    const serviceWithoutFreeGift = new PricingService([
-      { ...cats[0], subscriptionActive: true, pouchSize: CatPouchSize.F },
-      { ...cats[1], subscriptionActive: false, pouchSize: CatPouchSize.F },
-    ]);
-
     it("returns true if the total subscription price is greater than or equal to 120", () => {
-      const hasFreeGift = serviceWithFreeGift.hasFreeGift();
+      const hasFreeGift = service.hasFreeGift(120);
       expect(hasFreeGift).toEqual(true);
     });
 
     it("returns false if the total subscription price is less than 120", () => {
-      const hasFreeGift = serviceWithoutFreeGift.hasFreeGift();
+      const hasFreeGift = service.hasFreeGift(119);
       expect(hasFreeGift).toEqual(false);
     });
   });

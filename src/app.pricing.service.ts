@@ -4,12 +4,8 @@ import { Cat } from "./types";
 
 @Injectable()
 export class PricingService {
-  constructor(private readonly cats: Cat[]) {
-    this.cats = cats;
-  }
-
-  getTotalSubscriptionPrice(): number {
-    return this.filterInactiveCats().reduce(
+  getTotalSubscriptionPrice(cats: Cat[]): number {
+    return this.filterInactiveCats(cats).reduce(
       (acc, cat) => acc + this.getPriceByPouchSize(cat.pouchSize),
       0
     );
@@ -19,11 +15,11 @@ export class PricingService {
     return PouchPrice[pouchSize];
   }
 
-  filterInactiveCats(): Cat[] {
-    return this.cats.filter((cat) => cat.subscriptionActive);
+  filterInactiveCats(cats: Cat[]): Cat[] {
+    return cats.filter((cat) => cat.subscriptionActive);
   }
 
-  hasFreeGift(): boolean {
-    return this.getTotalSubscriptionPrice() >= 120;
+  hasFreeGift(totalPrice: number): boolean {
+    return totalPrice >= 120;
   }
 }
