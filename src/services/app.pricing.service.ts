@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
-import { PouchPrice } from "../data";
-import { Cat } from "./types";
+import { PouchPrice } from "../../data";
+import { Cat } from "../types";
 
 @Injectable()
 export class PricingService {

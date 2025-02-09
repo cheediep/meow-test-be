@@ -1,11 +1,11 @@
 import { Module } from "@nestjs/common";
 import { users } from "../data";
-import { CommsController } from "./app.comms.controller";
-import { AppController } from "./app.controller";
-import { PricingService } from "./app.pricing.service";
-import { AppService } from "./app.service";
-import { TemplateValuesService } from "./app.template-values.service";
-import { UserService } from "./app.user.service";
+import { CommsController } from "./controllers/app.comms.controller";
+import { AppController } from "./controllers/app.controller";
+import { PricingService } from "./services/app.pricing.service";
+import { AppService } from "./services/app.service";
+import { TemplateValuesService } from "./services/app.template-values.service";
+import { UserService } from "./services/app.user.service";
 
 @Module({
   imports: [],

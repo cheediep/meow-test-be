@@ -1,8 +1,8 @@
 import { Controller, Get, HttpStatus, Param, Res } from "@nestjs/common";
 import { Response } from "express";
-import { PricingService } from "./app.pricing.service";
-import { TemplateValuesService } from "./app.template-values.service";
-import { UserService } from "./app.user.service";
+import { PricingService } from "../services/app.pricing.service";
+import { TemplateValuesService } from "../services/app.template-values.service";
+import { UserService } from "../services/app.user.service";
 
 @Controller("comms")
 export class CommsController {
