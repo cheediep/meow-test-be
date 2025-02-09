@@ -1,7 +1,7 @@
 import { faker } from "@faker-js/faker";
-import { PouchPrice } from "../data";
+import { PouchPrice } from "../../data";
+import { Cat } from "../types";
 import { PricingService } from "./app.pricing.service";
-import { Cat } from "./types";
 
 describe("PricingService", () => {
   let service: PricingService;

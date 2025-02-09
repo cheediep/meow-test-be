@@ -1,6 +1,6 @@
 import { faker } from "@faker-js/faker";
+import { Cat } from "../types";
 import { TemplateValuesService } from "./app.template-values.service";
-import { Cat } from "./types";
 
 describe("TemplateValuesService", () => {
   let service: TemplateValuesService;

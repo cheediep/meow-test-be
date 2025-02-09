@@ -1,6 +1,6 @@
 import { faker } from "@faker-js/faker";
+import { CatPouchSize } from "../types";
 import { UserService } from "./app.user.service";
-import { CatPouchSize } from "./types";
 
 describe("UserService", () => {
   let service: UserService;
